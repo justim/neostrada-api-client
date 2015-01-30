@@ -1,0 +1,25 @@
+{
+	"name": "justim/neostrada-api-client",
+	"description": "API client for DNS/hosting provider Neostrada",
+	"licence": "MIT",
+	"version": "0.0.1",
+	"homepage": "https://github.com/justim/neostrada-api-client",
+	"authors": [
+		{
+			"name": "Tim",
+			"homepage": "https://github.com/justim"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/justim/neostrada-api-client/issues",
+		"source": "https://github.com/justim/neostrada-api-client"
+	},
+	"require": {
+		"php": ">=5.4.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"": "src/"
+		}
+	}
+}
