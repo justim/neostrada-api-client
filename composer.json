@@ -2,7 +2,7 @@
 	"name": "justim/neostrada-api-client",
 	"description": "API client for DNS/hosting provider Neostrada",
 	"licence": "MIT",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"homepage": "https://github.com/justim/neostrada-api-client",
 	"authors": [
 		{

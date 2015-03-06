@@ -2,15 +2,15 @@
 
 class Neostrada_Entries implements ArrayAccess, Iterator, Countable
 {
-	private $_neostrada;
+	private $_domain;
 	private $_type;
 
 	private $_entries = [];
 	private $_position = 0;
 
-	public function __construct(Neostrada $neostrada, $type, array $entries = [])
+	public function __construct(Neostrada_Domain $domain, $type, array $entries = [])
 	{
-		$this->_neostrada = $neostrada;
+		$this->_domain = $domain;
 		$this->_type = $type;
 		$this->_entries = $entries;
 	}
@@ -27,7 +27,7 @@ class Neostrada_Entries implements ArrayAccess, Iterator, Countable
 
 	public function save()
 	{
-		return $this->_neostrada->save();
+		return $this->_domain->save();
 	}
 
 	/////////////////////////////////////////////
