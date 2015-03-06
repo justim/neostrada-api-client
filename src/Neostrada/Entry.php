@@ -11,11 +11,11 @@ class Neostrada_Entry
 	public $ttl = 3600;
 	public $priority = 0;
 
-	private $_neostrada;
+	private $_domain;
 
-	public function __construct(Neostrada $neostrada, $info = null)
+	public function __construct(Neostrada_Domain $domain, $info = null)
 	{
-		$this->_neostrada = $neostrada;
+		$this->_domain = $domain;
 
 		if ($info !== null)
 		{
@@ -32,7 +32,7 @@ class Neostrada_Entry
 
 	public function save()
 	{
-		return $this->_neostrada->save();
+		return $this->_domain->save();
 	}
 
 	public function setDeleted()
@@ -44,6 +44,24 @@ class Neostrada_Entry
 	public function isDeleted()
 	{
 		return $this->_deleted;
+	}
+
+	public function toNeostradaFormat()
+	{
+		$neostradaEntry = [
+			'name' => $this->name,
+			'type' => $this->type,
+			'content' => $this->content,
+			'prio' => $this->priority,
+			'ttl' => $this->ttl,
+		];
+
+		if ($this->isDeleted())
+		{
+			$neostradaEntry['delete'] = 1;
+		}
+
+		return $neostradaEntry;
 	}
 
 	// setter for chaining

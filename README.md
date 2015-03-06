@@ -14,16 +14,18 @@
 ## Usage
 
 ```php
-$neostrada = new Neostrada($apiKey, $secret, 'example.com');
-$neostrada->a('www', '127.0.0.1');
-$neostrada->save();
+$neostrada = new Neostrada($apiKey, $secret);
 
-$mxs = $neostrada->mx(); // lists all MX-records
+$domain = $neostrada->domain('example.com');
+$domain->a('www', '127.0.0.1');
+$domain->save();
 
-foreach ($mxs as $mx)
+$mxRecords = $domain->mx(); // lists all MX-records
+
+foreach ($mxRecords as $mx)
 {
 	$mx->content = 'mail.google.com';
 }
 
-$mxs->save();
+$mxRecords->save();
 ```
