@@ -55,6 +55,12 @@ class Neostrada_Domain
 		return $this;
 	}
 
+	public function create($type)
+	{
+		$entry = new Neostrada_Entry($this);
+		$entry->type = strtoupper($type);
+	}
+
 	public function add(Neostrada_Entry $entry)
 	{
 		return $this->_client->request($this, 'adddns', $entry->toNeostradaFormat());
