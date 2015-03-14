@@ -6,7 +6,7 @@ class Neostrada_Domain
 
 	private $_name;
 	private $_extension;
-	private $_entries = [];
+	private $_records = [];
 
 	public function __construct(Neostrada $client, $domain)
 	{
@@ -37,19 +37,19 @@ class Neostrada_Domain
 		return $this->_name . '.' . $this->_extension;
 	}
 
-	public function getEntries()
+	public function getRecords()
 	{
-		return $this->_entries;
+		return $this->_records;
 	}
 
 	private function _getDns()
 	{
-		$this->_entries = [];
+		$this->_records = [];
 		$xml = $this->_client->request($this, 'getdns');
 
 		foreach ($xml->dns->item as $item)
 		{
-			$this->_entries[explode(';', (string) $item)[0]] = new Neostrada_Entry($this, (string) $item);
+			$this->_records[explode(';', (string) $item)[0]] = new Neostrada_Record($this, (string) $item);
 		}
 
 		return $this;
@@ -57,29 +57,29 @@ class Neostrada_Domain
 
 	public function create($type)
 	{
-		$entry = new Neostrada_Entry($this);
-		$entry->type = strtoupper($type);
+		$record = new Neostrada_Record($this);
+		$record->type = strtoupper($type);
 	}
 
-	public function add(Neostrada_Entry $entry)
+	public function add(Neostrada_Record $record)
 	{
-		return $this->_client->request($this, 'adddns', $entry->toNeostradaFormat());
+		return $this->_client->request($this, 'adddns', $record->toNeostradaFormat());
 	}
 
 	private function _single($type, $name, $content = null)
 	{
-		foreach ($this->_entries as $entry)
+		foreach ($this->_records as $record)
 		{
-			if ($entry->type === $type && $entry->name === $name)
+			if ($record->type === $type && $record->name === $name)
 			{
 				if ($content !== null)
 				{
-					$entry->setContent($content);
+					$record->setContent($content);
 					return $this;
 				}
 				else
 				{
-					return $entry;
+					return $record;
 				}
 			}
 		}
@@ -89,13 +89,13 @@ class Neostrada_Domain
 
 	private function _multiple($type)
 	{
-		$rs = new Neostrada_Entries($this, $type);
+		$rs = new Neostrada_Records($this, $type);
 
-		foreach ($this->_entries as $entry)
+		foreach ($this->_records as $record)
 		{
-			if ($entry->type === $type)
+			if ($record->type === $type)
 			{
-				$rs[] = $entry;
+				$rs[] = $record;
 			}
 		}
 

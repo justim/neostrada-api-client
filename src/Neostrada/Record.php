@@ -1,6 +1,6 @@
 <?php
 
-class Neostrada_Entry
+class Neostrada_Record
 {
 	private $_deleted = false;
 
@@ -48,7 +48,7 @@ class Neostrada_Entry
 
 	public function toNeostradaFormat()
 	{
-		$neostradaEntry = [
+		$neostradaRecord = [
 			'name' => $this->name,
 			'type' => $this->type,
 			'content' => $this->content,
@@ -58,10 +58,10 @@ class Neostrada_Entry
 
 		if ($this->isDeleted())
 		{
-			$neostradaEntry['delete'] = 1;
+			$neostradaRecord['delete'] = 1;
 		}
 
-		return $neostradaEntry;
+		return $neostradaRecord;
 	}
 
 	// setter for chaining

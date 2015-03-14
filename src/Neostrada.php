@@ -22,9 +22,9 @@ class Neostrada
 	{
 		$data = [];
 
-		foreach ($domain->getEntries() as $entry)
+		foreach ($domain->getRecords() as $record)
 		{
-			$data[$entry->neostradaDnsId] = $entry->toNeostradaFormat();
+			$data[$record->neostradaDnsId] = $record->toNeostradaFormat();
 		}
 
 		$this->request($domain, 'dns', [

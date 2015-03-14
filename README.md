@@ -45,11 +45,11 @@ foreach ($mxRecords as $mx)
 
 $mxRecords->save();
 
-// adding records can be done by a new entry and adding it
+// adding records can be done by a new record and adding it
 $a = $domain->create('a');
 $a->name = 'mail';
 $a->content = '127.0.0.1';
-$domain->add($a); // adding an entry saves it immediately
+$domain->add($a); // adding a record saves it immediately
 ```
 
 ## List of possible API calls
