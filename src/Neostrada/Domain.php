@@ -59,6 +59,7 @@ class Neostrada_Domain
 	{
 		$record = new Neostrada_Record($this);
 		$record->type = strtoupper($type);
+		return $record;
 	}
 
 	public function add(Neostrada_Record $record)
