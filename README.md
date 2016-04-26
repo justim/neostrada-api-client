@@ -50,6 +50,9 @@ $a = $domain->create('a');
 $a->name = 'mail';
 $a->content = '127.0.0.1';
 $domain->add($a); // adding a record saves it immediately
+
+// fetching the auth code
+$authCode = $domain->authCode();
 ```
 
 ## List of possible API calls
@@ -57,6 +60,7 @@ $domain->add($a); // adding a record saves it immediately
 - [x] getdns
 - [x] dns
 - [x] adddns
+- [x] gettoken
 - [ ] extensions
 - [ ] whois
 - [ ] holder

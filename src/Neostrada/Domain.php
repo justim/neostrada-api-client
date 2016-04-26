@@ -62,6 +62,12 @@ class Neostrada_Domain
 		return $record;
 	}
 
+	public function authCode()
+	{
+		$xml = $this->_client->request($this, 'gettoken');
+		return trim((string) $xml->token);
+	}
+
 	public function add(Neostrada_Record $record)
 	{
 		return $this->_client->request($this, 'adddns', $record->toNeostradaFormat());
